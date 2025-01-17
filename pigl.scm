@@ -1,6 +1,6 @@
-#lang racket
-(require (planet dyoo/simply-scheme:2:2))
-(require xrepl)
+#lang simply-scheme
+
+;;Shortened & inlined version of pigl from lecture 1
 (define (pigl wd)
         (if (not (member? (first wd) '(a e i o u)))
             (pigl (word (bf wd) (first wd)))
