@@ -8,9 +8,9 @@
 )
 
 
-(define (largest . nums) (cond ((empty? nums) '())
-                               ((= (length nums) 1) (car nums))
-                               ((< (car nums) (cadr nums)) (largest (cdr nums)))
-                               ((> (car nums) (cadr nums)) (largest (append (cdr nums) 
-                                                                     (list (car nums)))))
-                         ))
+(define (largest . nums)
+  (cond ((empty? nums) '())      ; if it's empty, don't do anything
+        ((= (length nums) 1) (car nums))     ; our work here is done.
+        ((< (car nums) (cadr nums)) (apply largest (cdr nums))) ; the number is smaller than its neighbor, so we can safely get rid of it.
+        ((= (car nums) (cadr nums)) (apply largest (cdr nums))) ; the number is the same as its neighbor, so we can get rid of it.
+        ((> (car nums) (cadr nums)) (apply largest (append (cdr nums) (list (car nums))))))) ; the number is larger than its neighbor, so we will shove it to the end.
